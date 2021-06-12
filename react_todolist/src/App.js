@@ -1,5 +1,4 @@
 import React from 'react';
-import { crateGlobalStyle} from 'styled-components';
 
 function App() {
   return (
