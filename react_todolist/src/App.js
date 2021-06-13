@@ -1,8 +1,17 @@
-import React from 'react';
+import React  from 'react';
+import {createGlobalStyle} from 'styled-components'
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    background: yellow;
+  }
+`;
 function App() {
   return (
-    <>안녕하세요</>
+    <>
+    <GlobalStyle/>
+    <div>안녕하세요</div>
+    </>
   );
 }
 
