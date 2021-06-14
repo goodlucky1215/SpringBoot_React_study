@@ -77,14 +77,31 @@ function TodoCreate() {
   const [open, setOpen] = useState(false); //초기에는 open이 false로 설정되있다
   const onToggle = () => setOpen(!open); //이 함수를 사용하게 되면 setOpen이 open을 반대로 계속 바꿔준다.
   
- // const nextId = useTodoNextId();
- // nextId.current +=1;
+  const [value, setValue] = useState('');
+  const dispatch = useTodoDispatch();
+  const nextId = useTodoNextId();
+  const onChange = e => setValue(e.target.value);
+  const create = e => {
+    e.preventDefault();
+    dispatch({
+      type: 'CREATE',
+      todo:{
+        id: nextId.current,
+        text: value,
+        done: false
+      }
+    });
+    setValue('');
+    setOpen(false);
+    nextId.current +=1;
+  }
+
   return(
     <>
     { open && (
       <InsertFormPositioner>
-        <InsertForm>
-          <Input placeholder="할 일을 입력 후, Enter를 누르세요" />
+        <InsertForm onSubmit={create}>
+          <Input onChange={onChange} value={value} placeholder="할 일을 입력 후, Enter를 누르세요" />
         </InsertForm>
       </InsertFormPositioner>
     )}

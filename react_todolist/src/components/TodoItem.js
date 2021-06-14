@@ -56,11 +56,24 @@ const TodoItemBlock = styled.div`
 `;
 
 function TodoItem({ id, done, text }) {
+  const dispatch = useTodoDispatch();
+  const toggle = () =>{
+    dispatch({
+      type: 'TOGGLE',
+      id
+    })
+  }
+  const remove = () =>{
+    dispatch({
+      type: 'REMOVE',
+      id
+    })  
+  }
   return (
     <TodoItemBlock>
-      <CheckCircle done={done}>{done && <MdDone />}</CheckCircle>
+      <CheckCircle onClick={toggle} done={done}>{done && <MdDone />}</CheckCircle>
       <Text donde={done}>{text}</Text>
-      <Remove>
+      <Remove onClick={remove}>
         <MdDelete />
       </Remove>
     </TodoItemBlock>
