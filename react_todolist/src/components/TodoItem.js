@@ -56,7 +56,15 @@ const TodoItemBlock = styled.div`
 `;
 
 function TodoItem({ id, done, text }) {
-
+  return (
+    <TodoItemBlock>
+      <CheckCircle done={done}>{done && <MdDone />}</CheckCircle>
+      <Text donde={done}>{text}</Text>
+      <Remove>
+        <MdDelete />
+      </Remove>
+    </TodoItemBlock>
+  )
 }
 
 export default React.memo(TodoItem);

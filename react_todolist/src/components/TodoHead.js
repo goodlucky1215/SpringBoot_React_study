@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useTodoState } from "./TodoContext";
+import { useTodoState } from './TodoContext';
 
 const TodoHeadBlock = styled.div`
   padding: 48px 32px 24px 32px;
@@ -27,7 +27,15 @@ const TodoHeadBlock = styled.div`
 `;
 
 function TodoHead() {
-
+  const todos = useTodoState();
+  const undonetodos = todos.filter(todo => !todo.done); //이렇게 하면 done이 false인 애들만 가져오겠지?
+  return (
+    <TodoHeadBlock>
+      <h1>2021년 1월 17일</h1>
+      <div className="day">일요일</div>
+      <div className="tasks-left">할 일 {undonetodos.length}개 남음</div>
+    </TodoHeadBlock>
+  );
 }
 
 export default TodoHead;
